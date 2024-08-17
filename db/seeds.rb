@@ -7,3 +7,9 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+# seeds for airports table
+
+["NYC", "CAL", "AUX", "PHX","TX","LA","VA"].each do |airport_code|
+       Airport.find_or_create_by!(airport_code: airport_code)
+     end
