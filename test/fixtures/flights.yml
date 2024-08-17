@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  depature_airport_id: 1
+  arrival_airport_id: 1
+  start_date: 2024-08-17
+  flight_duration: 2024-08-17 13:31:49
+
+two:
+  depature_airport_id: 1
+  arrival_airport_id: 1
+  start_date: 2024-08-17
+  flight_duration: 2024-08-17 13:31:49

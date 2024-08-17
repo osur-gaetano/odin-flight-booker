@@ -13,3 +13,44 @@
 ["NYC", "CAL", "AUX", "PHX","TX","LA","VA"].each do |airport_code|
        Airport.find_or_create_by!(airport_code: airport_code)
      end
+
+
+# Seeds for the flight table
+# 
+[
+  { departure_airport_id: 1, arrival_airport_id: 3, start_date: DateTime.new(2024,8,18,10,
+  0,0), flight_duration: Time.parse("01:30")},
+  { departure_airport_id: 1, arrival_airport_id: 5, start_date: DateTime.new(2024,8,18,10,
+  0,0), flight_duration: Time.parse("01:30")},
+  { departure_airport_id: 1, arrival_airport_id: 4, start_date: DateTime.new(2024,8,18,10,
+  0,0), flight_duration: Time.parse("01:30")},{ departure_airport_id: 1, arrival_airport_id: 5, start_date: DateTime.new(2024,8,18,10,
+  0,0), flight_duration: Time.parse("01:30")},
+  { departure_airport_id: 2, arrival_airport_id: 1, start_date: DateTime.new(2024,8,18,10,
+  0,0), flight_duration: Time.parse("01:30")},
+  { departure_airport_id: 2, arrival_airport_id: 6, start_date: DateTime.new(2024,8,18,10,
+  0,0), flight_duration: Time.parse("01:30")},
+  { departure_airport_id: 3, arrival_airport_id: 7, start_date: DateTime.new(2024,8,18,10,
+  0,0), flight_duration: Time.parse("01:30")},
+  { departure_airport_id: 1, arrival_airport_id: 6, start_date: DateTime.new(2024,8,18,10,
+  0,0), flight_duration: Time.parse("01:30")}
+]. each do |flight_data|
+  Flight.find_or_create_by!(flight_data)
+end
+
+# Flight.find_or_create_by([
+#   { departure_airport_id: 1, arrival_airport_id: 3, start_date: DateTime.new(2024,8,18,10,
+#   0,0), flight_duration: Time.parse("01:30")},
+#   { departure_airport_id: 1, arrival_airport_id: 5, start_date: DateTime.new(2024,8,18,10,
+#   0,0), flight_duration: Time.parse("01:30")},
+#   { departure_airport_id: 1, arrival_airport_id: 4, start_date: DateTime.new(2024,8,18,10,
+#   0,0), flight_duration: Time.parse("01:30")},{ departure_airport_id: 1, arrival_airport_id: 5, start_date: DateTime.new(2024,8,18,10,
+#   0,0), flight_duration: Time.parse("01:30")},
+#   { departure_airport_id: 2, arrival_airport_id: 1, start_date: DateTime.new(2024,8,18,10,
+#   0,0), flight_duration: Time.parse("01:30")},
+#   { departure_airport_id: 2, arrival_airport_id: 6, start_date: DateTime.new(2024,8,18,10,
+#   0,0), flight_duration: Time.parse("01:30")},
+#   { departure_airport_id: 3, arrival_airport_id: 7, start_date: DateTime.new(2024,8,18,10,
+#   0,0), flight_duration: Time.parse("01:30")},
+#   { departure_airport_id: 1, arrival_airport_id: 6, start_date: DateTime.new(2024,8,18,10,
+#   0,0), flight_duration: Time.parse("01:30")}
+# ])
