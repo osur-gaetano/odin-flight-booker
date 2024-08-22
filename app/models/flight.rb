@@ -4,18 +4,11 @@ class Flight < ApplicationRecord
 
 
   def self.search(flight_params)
-    if flight_params
       departure_airport = Airport.find_by(airport_code: flight_params[:departure_code])
       arrival_airport = Airport.find_by(airport_code: flight_params[:arrival_code])
-      self.where(departure_airport_id: departure_airport.id).or(self.where(arrival_airport_id: arrival_airport.id))
-    else
-      @flights = Flight.all     
-    end
-
-    
-
+      start_date = flight_params[:flight_date]
+      self.where(departure_airport_id: departure_airport.id).where(arrival_airport_id: arrival_airport.id).where(flight_date: start_date)     
   end
-
 
   def departure_code
     departure_airport.airport_code
@@ -24,6 +17,5 @@ class Flight < ApplicationRecord
   def arrival_code
     arrival_airport.airport_code
   end
- 
 
 end

@@ -1,0 +1,37 @@
+<h1>Flights On The Go !</h1>
+
+<h5> Search </h5>
+
+<%= form_with url: flights_path , method: :get, local: true do |flight_form|%>
+    <%=collection_select(:flight, :departure_code, Flight.all, :departure_code, :departure_code, prompt: false)%>
+    <%=collection_select(:flight, :arrival_code, Flight.all, :arrival_code, :arrival_code, prompt: false)%>
+    <%=collection_select(:flight, :flight_date, Flight.all, :flight_date, :flight_date, prompt: false)%>
+
+
+    <%= flight_form.submit "Flight Search", name: nil%>
+
+<%end%>
+
+<h5> Flight Serach Results </h5>
+    <% if @flights.empty?%>
+        <p> No Flight record found !!, Make a flight search </p>
+    <%else%>
+        <table>
+            <tr>
+                <th> Destination airport </th>
+                <th> Arrival airport </th>
+                <th> Flight date </th>
+            </tr>
+                                
+                    <% @flights.each do |flight|%>
+                    <tr>
+                        <td> <%= flight.departure_airport.airport_code%> </td>
+                        <td> <%= flight.arrival_airport.airport_code%> </td>
+                        <td> <%= flight.flight_date%> </td>
+
+                    </tr>
+                    <%end%>
+        </table>
+
+        <%= @flights.each do |flight|%>
+    <%end%>
