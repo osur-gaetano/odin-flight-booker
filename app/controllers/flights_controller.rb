@@ -3,11 +3,11 @@ class FlightsController < ApplicationController
     if params[:flight].nil?
       @flights = []
     else
-    @flights = Flight.search(flight_params)
+      @flights = Flight.search(flight_params)
     end
   end
 
   def flight_params
-    params.require(:flight).permit(:departure_airport_id, :arrival_airport_id, :flight_date,:flight_duration,:flight, :departure_code, :arrival_code)
+    params.require(:flight).permit(:departure_airport_id, :arrival_airport_id, :flight_date,:flight_duration,:flight, :departure_code, :arrival_code, :passangers)
   end
 end
