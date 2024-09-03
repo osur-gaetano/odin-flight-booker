@@ -7,31 +7,32 @@
     <%=collection_select(:flight, :arrival_code, Flight.all, :arrival_code, :arrival_code, prompt: false)%>
     <%=collection_select(:flight, :flight_date, Flight.all, :flight_date, :flight_date, prompt: false)%>
 
+    <div>
+        <%= label_tag :passengers, "Number of Passengers" %>
+        <%= select_tag :passangers, options_for_select(1..4, params[:passangers]) %>
+    </div>
+
 
     <%= flight_form.submit "Flight Search", name: nil%>
 
 <%end%>
 
-<h5> Flight Serach Results </h5>
-    <% if @flights.empty?%>
-        <p> No Flight record found !!, Make a flight search </p>
-    <%else%>
-        <table>
-            <tr>
-                <th> Destination airport </th>
-                <th> Arrival airport </th>
-                <th> Flight date </th>
-            </tr>
-                                
-                    <% @flights.each do |flight|%>
-                    <tr>
-                        <td> <%= flight.departure_airport.airport_code%> </td>
-                        <td> <%= flight.arrival_airport.airport_code%> </td>
-                        <td> <%= flight.flight_date%> </td>
-
-                    </tr>
-                    <%end%>
-        </table>
-
-        <%= @flights.each do |flight|%>
-    <%end%>
+<% if @flights.any? %>
+  <h2>Available Flights</h2>
+  <%= form_with url: new_booking_path, method: :get, local: true do %>
+    <%= hidden_field_tag :num_tickets, params[:passangers] %>
+    <ul>
+      <% @flights.each do |flight| %>
+        <li>
+          <%= radio_button_tag :flight_id, flight.id %>
+          <%= flight.departure_airport.airport_code %> to <%= flight.arrival_airport.airport_code %> |
+          Departure: <%= flight.flight_date.strftime("%B %d, %Y %I:%M %p") %> |
+          Duration: <%= flight.flight_duration %> minutes
+        </li>
+      <% end %>
+    </ul>
+    <%= submit_tag "Choose Flight" %>
+  <% end %>
+<% else %>
+  <p>No flights found for your search criteria.</p>
+<% end %>

@@ -1,2 +1,15 @@
-<h1>Bookings#show</h1>
-<p>Find me in app/views/bookings/show.html.erb</p>
+<h2>Booking Confirmation</h2>
+
+<p>
+  You have booked the following flight:<br>
+  From <%= @booking.flight.departure_airport.airport_code %> to <%= @booking.flight.arrival_airport.airport_code %><br>
+  Departure: <%= @booking.flight.flight_date.strftime("%B %d, %Y %I:%M %p") %><br>
+  Duration: <%= @booking.flight.flight_duration %> minutes
+</p>
+
+<h3>Passenger Information</h3>
+<ul>
+  <% @booking.passangers.each do |passanger| %>
+    <li><%= passanger.username %> (<%= passanger.email %>)</li>
+  <% end %>
+</ul>
