@@ -15,29 +15,23 @@
      end
 
 
+
+
+
 # Seeds for the flight table
-# 
-[
-  { departure_airport_id: 1, arrival_airport_id: 3, flight_date: DateTime.new(2024,8,18,10,
-  0,0), flight_duration: Time.parse("01:30")},
-  { departure_airport_id: 1, arrival_airport_id: 5, flight_date: DateTime.new(2024,8,18,10,
-  0,0), flight_duration: Time.parse("01:30")},
-  { departure_airport_id: 1, arrival_airport_id: 4, flight_date: DateTime.new(2024,8,18,10,
-  0,0), flight_duration: Time.parse("01:30")},{ departure_airport_id: 1, arrival_airport_id: 5, flight_date: DateTime.new(2024,8,18,10,
-  0,0), flight_duration: Time.parse("01:30")},
-  { departure_airport_id: 2, arrival_airport_id: 1, flight_date: DateTime.new(2024,8,18,10,
-  0,0), flight_duration: Time.parse("01:30")},
-  { departure_airport_id: 2, arrival_airport_id: 6, flight_date: DateTime.new(2024,8,18,10,
-  0,0), flight_duration: Time.parse("01:30")},
-  { departure_airport_id: 3, arrival_airport_id: 7, flight_date: DateTime.new(2024,8,18,10,
-  0,0), flight_duration: Time.parse("01:30")},
-  { departure_airport_id: 1, arrival_airport_id: 6, flight_date: DateTime.new(2024,8,18,10,
-  0,0), flight_duration: Time.parse("01:30")}
-]. each do |flight_data|
-  Flight.find_or_create_by!(flight_data)
+
+5.times do
+  Flight.create!(
+    departure_airport: Airport.all.sample,
+    arrival_airport: Airport.all.sample,
+    flight_date: Faker::Time.between(from: DateTime.now, to: DateTime.now + 30),
+    flight_duration: rand(60..360)
+  )
 end
 
-# Flight.find_or_create_by([
+
+
+# [
 #   { departure_airport_id: 1, arrival_airport_id: 3, flight_date: DateTime.new(2024,8,18,10,
 #   0,0), flight_duration: Time.parse("01:30")},
 #   { departure_airport_id: 1, arrival_airport_id: 5, flight_date: DateTime.new(2024,8,18,10,
@@ -53,4 +47,7 @@ end
 #   0,0), flight_duration: Time.parse("01:30")},
 #   { departure_airport_id: 1, arrival_airport_id: 6, flight_date: DateTime.new(2024,8,18,10,
 #   0,0), flight_duration: Time.parse("01:30")}
-# ])
+# ]. each do |flight_data|
+#   Flight.find_or_create_by!(flight_data)
+# end
+
