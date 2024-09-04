@@ -7,10 +7,11 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
+    @flight = @booking.flight
     if @booking.save
       redirect_to @booking, notice: "Booking successfully created"
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
